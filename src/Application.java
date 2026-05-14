@@ -43,7 +43,7 @@ public class Application {
                 getElement();
                 menu();
             case "4":
-                System.out.println("You choose 4");
+                deleteElement();
                 menu();
             case "5":
                 return;
@@ -92,6 +92,28 @@ public class Application {
                 System.out.println("No element found, try again");
                 getElement();
             }
+        } else {
+            System.out.println("This element is empty");
+        }
+    }
+
+    protected void deleteElement() {
+        Scanner sc = new Scanner(System.in);
+        if (this.data.keySet().toArray().length != 0) {
+            for (int i = 0; i < this.data.keySet().toArray().length; i++) {
+                System.out.println(parseName(this.data.keySet().toArray()[i].toString(), this.data.values().toArray()[i].toString()));
+            }
+
+            System.out.print("Enter key : ");
+            int input = sc.nextInt();
+            if (this.data.get(input) != null) {
+                this.data.remove(input);
+                menu();
+            } else {
+                System.out.println("No element found, try again");
+                deleteElement();
+            }
+
         } else {
             System.out.println("This element is empty");
         }
